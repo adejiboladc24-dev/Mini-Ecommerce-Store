@@ -92,7 +92,7 @@ const Products = () => {
     if (totalPages <= 1) return null;
 
     const pages = [];
-    const maxVisible = 5;
+    const maxVisible = window.innerWidth < 640 ? 3 : 5; // Show fewer pages on mobile
     let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
     let endPage = Math.min(totalPages, startPage + maxVisible - 1);
 
@@ -105,21 +105,21 @@ const Products = () => {
     }
 
     return (
-      <div className="flex items-center justify-center gap-2 mt-12">
+      <div className="flex items-center justify-center gap-1 sm:gap-2 mt-8 sm:mt-12 px-4">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="pagination-button disabled:opacity-30 disabled:cursor-not-allowed"
+          className="pagination-button disabled:opacity-30 disabled:cursor-not-allowed p-2 sm:p-3"
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
         </button>
 
         {startPage > 1 && (
           <>
-            <button onClick={() => handlePageChange(1)} className="pagination-button">
+            <button onClick={() => handlePageChange(1)} className="pagination-button text-xs sm:text-sm px-2 sm:px-3 py-2">
               1
             </button>
-            {startPage > 2 && <span className="text-white/40">...</span>}
+            {startPage > 2 && <span className="text-white/40 text-xs sm:text-sm">...</span>}
           </>
         )}
 
@@ -127,7 +127,7 @@ const Products = () => {
           <button
             key={page}
             onClick={() => handlePageChange(page)}
-            className={`pagination-button ${currentPage === page ? 'active' : ''}`}
+            className={`pagination-button text-xs sm:text-sm px-2 sm:px-3 py-2 ${currentPage === page ? 'active' : ''}`}
           >
             {page}
           </button>
@@ -135,8 +135,8 @@ const Products = () => {
 
         {endPage < totalPages && (
           <>
-            {endPage < totalPages - 1 && <span className="text-white/40">...</span>}
-            <button onClick={() => handlePageChange(totalPages)} className="pagination-button">
+            {endPage < totalPages - 1 && <span className="text-white/40 text-xs sm:text-sm">...</span>}
+            <button onClick={() => handlePageChange(totalPages)} className="pagination-button text-xs sm:text-sm px-2 sm:px-3 py-2">
               {totalPages}
             </button>
           </>
@@ -145,36 +145,36 @@ const Products = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="pagination-button disabled:opacity-30 disabled:cursor-not-allowed"
+          className="pagination-button disabled:opacity-30 disabled:cursor-not-allowed p-2 sm:p-3"
         >
-          <ChevronRight size={20} />
+          <ChevronRight size={16} className="sm:w-5 sm:h-5" />
         </button>
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen mesh-gradient py-8 pt-28">
+    <div className="min-h-screen mesh-gradient py-4 sm:py-6 md:py-8 pt-20 sm:pt-24 md:pt-28">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <h1 className="luxury-text text-5xl font-bold text-white mb-2">
+          <h1 className="luxury-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 break-words">
             {searchParams.get('search') 
               ? `Search: "${searchParams.get('search')}"`
               : searchParams.get('category')
               ? `${searchParams.get('category')}`
               : 'All Products'}
           </h1>
-          <p className="text-white/60 text-lg">
+          <p className="text-white/60 text-sm sm:text-base md:text-lg">
             Showing {paginatedData.products.length} of {filteredProducts.length} products
           </p>
         </motion.div>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
           {/* Filter Sidebar */}
           <FilterSidebar
             filters={filters}
@@ -186,28 +186,28 @@ const Products = () => {
           />
 
           {/* Main Content */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             {/* Toolbar */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="sophisticated-card p-4 mb-6 flex flex-wrap items-center justify-between gap-4"
+              className="sophisticated-card p-3 sm:p-4 mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full sm:w-auto">
                 <Button
                   variant="secondary"
                   size="sm"
                   onClick={() => setIsFilterOpen(true)}
-                  className="lg:hidden glass"
+                  className="lg:hidden glass text-xs sm:text-sm"
                 >
-                  <SlidersHorizontal size={20} className="mr-2" />
+                  <SlidersHorizontal size={16} className="mr-2" />
                   Filters
                 </Button>
 
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="sophisticated-input py-2 text-sm"
+                  className="sophisticated-input py-2 text-xs sm:text-sm flex-1 sm:flex-none min-w-0"
                 >
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
@@ -217,7 +217,7 @@ const Products = () => {
                 </select>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-lg transition-all ${
@@ -226,7 +226,7 @@ const Products = () => {
                       : 'glass text-white/60 hover:text-white'
                   }`}
                 >
-                  <Grid size={20} />
+                  <Grid size={18} />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
@@ -236,7 +236,7 @@ const Products = () => {
                       : 'glass text-white/60 hover:text-white'
                   }`}
                 >
-                  <List size={20} />
+                  <List size={18} />
                 </button>
               </div>
             </motion.div>
@@ -247,8 +247,8 @@ const Products = () => {
                 <div
                   className={
                     viewMode === 'grid'
-                      ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'
-                      : 'space-y-6'
+                      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6'
+                      : 'space-y-4 sm:space-y-6'
                   }
                 >
                   {paginatedData.products.map((product, index) => (
@@ -267,13 +267,13 @@ const Products = () => {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-center py-20"
+                className="text-center py-12 sm:py-16 md:py-20"
               >
-                <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-2xl font-bold text-white mb-2">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-4">🔍</div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
                   No products found
                 </h3>
-                <p className="text-white/60 mb-6">
+                <p className="text-white/60 mb-4 sm:mb-6 text-sm sm:text-base">
                   Try adjusting your filters or search query
                 </p>
                 <Button
@@ -282,6 +282,7 @@ const Products = () => {
                     setPriceRange([0, 1000]);
                     setCurrentPage(1);
                   }}
+                  className="text-sm sm:text-base"
                 >
                   Clear Filters
                 </Button>

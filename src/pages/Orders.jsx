@@ -62,28 +62,28 @@ const Orders = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg py-4 sm:py-6 md:py-8">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             My Orders
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             Track and manage your orders
           </p>
         </motion.div>
 
         {/* Filter Tabs */}
-        <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+        <div className="flex gap-2 mb-6 sm:mb-8 overflow-x-auto pb-2 scrollbar-hide">
           {['all', 'processing', 'shipped', 'delivered', 'cancelled'].map((status) => (
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-6 py-3 rounded-xl font-semibold whitespace-nowrap transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold whitespace-nowrap transition-all text-sm sm:text-base ${
                 filter === status
                   ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
                   : 'bg-white dark:bg-dark-card text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-hover'
@@ -110,25 +110,25 @@ const Orders = () => {
                 className="bg-white dark:bg-dark-card rounded-2xl shadow-lg overflow-hidden"
               >
                 {/* Order Header */}
-                <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-hover dark:to-dark-bg p-6 border-b border-gray-200 dark:border-gray-700">
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-hover dark:to-dark-bg p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="w-full sm:w-auto">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mb-2">
+                        <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                           Order #{order.orderNumber}
                         </h3>
-                        <span className={`px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2 ${statusBg} ${statusColor}`}>
+                        <span className={`px-3 py-1 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 w-fit ${statusBg} ${statusColor}`}>
                           <StatusIcon size={16} />
                           {order.status}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                         Placed on {formatDate(order.date)}
                       </p>
                     </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Total Amount</p>
-                      <p className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    <div className="text-left sm:text-right w-full sm:w-auto">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Total Amount</p>
+                      <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                         ${order.total.toFixed(2)}
                       </p>
                     </div>
@@ -136,8 +136,8 @@ const Orders = () => {
                 </div>
 
                 {/* Order Items */}
-                <div className="p-6">
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <div className="p-4 sm:p-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
                     {order.items.slice(0, 3).map((item) => (
                       <div key={`${item.id}-${JSON.stringify(item.selectedOptions)}`} className="flex gap-3 p-3 bg-gray-50 dark:bg-dark-hover rounded-xl">
                         <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg" />

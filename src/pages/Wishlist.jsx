@@ -50,18 +50,18 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg py-4 sm:py-6 md:py-8">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 flex items-center justify-between"
+          className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
         >
           <div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
               My Wishlist
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
               {wishlist.length} {wishlist.length === 1 ? 'item' : 'items'} saved
             </p>
           </div>
@@ -72,13 +72,14 @@ const Wishlist = () => {
                 clearWishlist();
                 addToast('Wishlist cleared', 'info');
               }}
+              className="w-full sm:w-auto text-sm sm:text-base"
             >
               Clear Wishlist
             </Button>
           )}
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {wishlist.map((product, index) => (
             <motion.div
               key={product.id}

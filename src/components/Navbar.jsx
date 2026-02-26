@@ -46,11 +46,11 @@ const Navbar = () => {
               </div>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500"></div>
             </motion.div>
-            <div className="hidden sm:flex flex-col">
-              <span className="luxury-text text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <div className="flex flex-col">
+              <span className="luxury-text text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight">
                 LuxeStore
               </span>
-              <span className="text-[10px] text-white/50 tracking-widest uppercase">
+              <span className="hidden sm:block text-[10px] text-white/50 tracking-widest uppercase">
                 Premium Collection
               </span>
             </div>
