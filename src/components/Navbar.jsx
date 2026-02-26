@@ -32,22 +32,22 @@ const Navbar = () => {
 
   return (
     <nav className="premium-navbar">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
           {/* Logo - Luxury Branding */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
             <motion.div
               whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
               className="relative"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary via-purple-500 to-secondary flex items-center justify-center glow-pulse">
-                <Sparkles className="text-white" size={24} />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-primary via-purple-500 to-secondary flex items-center justify-center glow-pulse">
+                <Sparkles className="text-white" size={20} />
               </div>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500"></div>
             </motion.div>
-            <div className="flex flex-col">
-              <span className="luxury-text text-2xl font-bold text-white tracking-tight">
+            <div className="hidden sm:flex flex-col">
+              <span className="luxury-text text-xl sm:text-2xl font-bold text-white tracking-tight">
                 LuxeStore
               </span>
               <span className="text-[10px] text-white/50 tracking-widest uppercase">
@@ -57,12 +57,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className="relative text-white/80 hover:text-white transition-colors font-medium group"
+                className="relative text-white/80 hover:text-white transition-colors font-medium group text-sm xl:text-base"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></span>
@@ -73,18 +73,18 @@ const Navbar = () => {
           {/* Search Bar - Sophisticated */}
           <form 
             onSubmit={handleSearch} 
-            className="hidden md:flex items-center flex-1 max-w-md mx-8"
+            className="hidden md:flex items-center flex-1 max-w-xs lg:max-w-md mx-2 lg:mx-8"
           >
             <div className={`relative w-full transition-all duration-300 ${isSearchFocused ? 'scale-105' : ''}`}>
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" size={20} />
+              <Search className="absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-white/40" size={18} />
               <input
                 type="text"
-                placeholder="Search luxury products..."
+                placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
-                className="sophisticated-input pl-12 pr-4"
+                className="sophisticated-input pl-10 lg:pl-12 pr-3 lg:pr-4 py-2 text-sm"
               />
               {isSearchFocused && (
                 <motion.div
@@ -97,13 +97,13 @@ const Navbar = () => {
           </form>
 
           {/* Right Icons - Premium */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
             {/* Theme Toggle */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className="p-3 rounded-xl glass hover:bg-white/10 transition-all"
+              className="p-2 sm:p-3 rounded-xl glass hover:bg-white/10 transition-all"
             >
               <AnimatePresence mode="wait">
                 {isDark ? (
@@ -114,7 +114,7 @@ const Navbar = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Sun size={20} className="text-yellow-400" />
+                    <Sun size={18} className="text-yellow-400 sm:w-5 sm:h-5" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -124,7 +124,7 @@ const Navbar = () => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Moon size={20} className="text-purple-400" />
+                    <Moon size={18} className="text-purple-400 sm:w-5 sm:h-5" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -135,14 +135,14 @@ const Navbar = () => {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative p-3 rounded-xl glass hover:bg-white/10 transition-all"
+                className="relative p-2 sm:p-3 rounded-xl glass hover:bg-white/10 transition-all"
               >
-                <Heart size={20} className="text-white/80" />
+                <Heart size={18} className="text-white/80 sm:w-5 sm:h-5" />
                 {wishlist.length > 0 && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold"
+                    className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-pink-500 to-red-500 text-white text-[10px] sm:text-xs rounded-full flex items-center justify-center font-bold"
                   >
                     {wishlist.length}
                   </motion.span>
@@ -155,14 +155,14 @@ const Navbar = () => {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative p-3 rounded-xl glass hover:bg-white/10 transition-all"
+                className="relative p-2 sm:p-3 rounded-xl glass hover:bg-white/10 transition-all"
               >
-                <ShoppingCart size={20} className="text-white/80" />
+                <ShoppingCart size={18} className="text-white/80 sm:w-5 sm:h-5" />
                 {getCartCount() > 0 && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-primary to-secondary text-white text-xs rounded-full flex items-center justify-center font-bold glow-pulse"
+                    className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-primary to-secondary text-white text-[10px] sm:text-xs rounded-full flex items-center justify-center font-bold glow-pulse"
                   >
                     {getCartCount()}
                   </motion.span>
@@ -175,16 +175,16 @@ const Navbar = () => {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="p-3 rounded-xl glass hover:bg-white/10 transition-all"
+                className="p-2 sm:p-3 rounded-xl glass hover:bg-white/10 transition-all"
               >
-                <User size={20} className="text-white/80" />
+                <User size={18} className="text-white/80 sm:w-5 sm:h-5" />
               </motion.div>
             </Link>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-3 rounded-xl glass hover:bg-white/10 transition-all"
+              className="lg:hidden p-2 sm:p-3 rounded-xl glass hover:bg-white/10 transition-all"
             >
               <AnimatePresence mode="wait">
                 {isMenuOpen ? (
@@ -194,7 +194,7 @@ const Navbar = () => {
                     animate={{ rotate: 0, opacity: 1 }}
                     exit={{ rotate: 90, opacity: 0 }}
                   >
-                    <X size={24} className="text-white" />
+                    <X size={20} className="text-white sm:w-6 sm:h-6" />
                   </motion.div>
                 ) : (
                   <motion.div

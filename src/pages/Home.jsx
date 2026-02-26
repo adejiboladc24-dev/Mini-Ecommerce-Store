@@ -103,22 +103,22 @@ const Home = () => {
                   <motion.div
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary via-purple-500 to-secondary flex items-center justify-center glow-pulse"
+                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-primary via-purple-500 to-secondary flex items-center justify-center glow-pulse"
                   >
-                    <Sparkles className="text-white" size={48} />
+                    <Sparkles className="text-white" size={32} />
                   </motion.div>
                   <div>
-                    <h1 className="luxury-heading text-7xl md:text-8xl mb-2">
+                    <h1 className="luxury-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2">
                       LuxeStore
                     </h1>
-                    <p className="text-xl text-white/60 tracking-widest uppercase">Where Luxury Meets Lifestyle</p>
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 tracking-widest uppercase">Where Luxury Meets Lifestyle</p>
                   </div>
                 </div>
               </motion.div>
 
               {/* Tagline */}
               <motion.p
-                className="text-2xl md:text-3xl text-white/80 leading-relaxed"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -128,7 +128,7 @@ const Home = () => {
 
               {/* Live Stats */}
               <motion.div
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-3 sm:gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -139,9 +139,9 @@ const Home = () => {
                   { label: 'Products', value: stats.products + '+', icon: '🛍️' },
                   { label: 'Rating', value: stats.rating + '⭐', icon: '⭐' }
                 ].map((stat, index) => (
-                  <div key={index} className="sophisticated-card p-4 text-center">
-                    <div className="text-3xl mb-1">{stat.icon}</div>
-                    <div className="text-2xl font-bold gradient-text">{stat.value}</div>
+                  <div key={index} className="sophisticated-card p-3 sm:p-4 text-center">
+                    <div className="text-2xl sm:text-3xl mb-1">{stat.icon}</div>
+                    <div className="text-xl sm:text-2xl font-bold gradient-text">{stat.value}</div>
                     <div className="text-xs text-white/50">{stat.label}</div>
                   </div>
                 ))}
@@ -149,21 +149,21 @@ const Home = () => {
 
               {/* CTA Buttons */}
               <motion.div
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row flex-wrap gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <Link to="/products">
-                  <Button size="lg" className="luxury-button group text-lg px-8 py-4">
-                    <ShoppingBag className="mr-2" size={24} />
+                <Link to="/products" className="w-full sm:w-auto">
+                  <Button size="lg" className="luxury-button group text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                    <ShoppingBag className="mr-2" size={20} />
                     Shop Now
-                    <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={24} />
+                    <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
                   </Button>
                 </Link>
-                <Link to="/products?category=Fashion">
-                  <Button variant="outline" size="lg" className="glass border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4">
-                    <TrendingUp className="mr-2" size={24} />
+                <Link to="/products?category=Fashion" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="glass border-white/30 text-white hover:bg-white/10 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                    <TrendingUp className="mr-2" size={20} />
                     Trending Now
                   </Button>
                 </Link>
@@ -171,13 +171,13 @@ const Home = () => {
 
               {/* Trust Badges */}
               <motion.div
-                className="flex flex-wrap gap-4 pt-4"
+                className="flex flex-wrap gap-3 sm:gap-4 pt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
               >
                 {['🔒 Secure Payment', '🚚 Fast Delivery', '✅ Quality Guaranteed'].map((badge, i) => (
-                  <div key={i} className="px-4 py-2 glass rounded-full text-sm text-white/80">
+                  <div key={i} className="px-3 sm:px-4 py-2 glass rounded-full text-xs sm:text-sm text-white/80">
                     {badge}
                   </div>
                 ))}
@@ -189,7 +189,7 @@ const Home = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative h-[600px]"
+              className="relative h-[400px] sm:h-[500px] md:h-[600px]"
             >
               {/* Main Slideshow */}
               <div className="relative h-full">
@@ -301,7 +301,7 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {categories.map((category, index) => (
               <motion.div
                 key={category}
@@ -353,7 +353,7 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
             {featuredProducts.map((product, index) => (
               <ProductCard key={product.id} product={product} index={index} />
             ))}
@@ -387,7 +387,7 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}

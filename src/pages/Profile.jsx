@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, Mail, Phone, MapPin, Edit2, Save } from 'lucide-react';
 import Button from '../components/Button';
@@ -42,12 +42,12 @@ const Profile = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-6 md:mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             My Profile
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             Manage your account information
           </p>
         </motion.div>
@@ -59,44 +59,45 @@ const Profile = () => {
           className="bg-white dark:bg-dark-card rounded-2xl shadow-lg overflow-hidden mb-8"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary to-secondary p-8 text-white">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <User size={48} />
+          <div className="bg-gradient-to-r from-primary to-secondary p-4 sm:p-6 md:p-8 text-white">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0">
+                  <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold mb-1">{profile.name}</h2>
-                  <p className="text-white/80">{profile.email}</p>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">{profile.name}</h2>
+                  <p className="text-sm sm:text-base text-white/80 break-all">{profile.email}</p>
                 </div>
               </div>
               {!isEditing && (
                 <Button
                   variant="outline"
                   onClick={() => setIsEditing(true)}
-                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary"
+                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary text-sm sm:text-base w-full sm:w-auto"
                 >
-                  <Edit2 size={18} className="mr-2" />
-                  Edit Profile
+                  <Edit2 size={16} className="sm:mr-2" />
+                  <span className="hidden sm:inline">Edit Profile</span>
+                  <span className="sm:hidden">Edit</span>
                 </Button>
               )}
             </div>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-4 gap-4 p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                className="text-center p-2 sm:p-0"
               >
-                <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-1">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                   {stat.label}
                 </div>
               </motion.div>
@@ -104,10 +105,10 @@ const Profile = () => {
           </div>
 
           {/* Profile Details */}
-          <div className="p-8 space-y-6">
+          <div className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                <User size={18} />
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <User size={16} className="sm:w-[18px] sm:h-[18px]" />
                 Full Name
               </label>
               {isEditing ? (
@@ -119,15 +120,15 @@ const Profile = () => {
                   placeholder="Enter your name"
                 />
               ) : (
-                <p className="text-gray-900 dark:text-white text-lg">
-                  {profile.name}
+                <p className="text-gray-900 dark:text-white text-base sm:text-lg break-words">
+                  {profile.name || 'Not provided'}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                <Mail size={18} />
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <Mail size={16} className="sm:w-[18px] sm:h-[18px]" />
                 Email Address
               </label>
               {isEditing ? (
@@ -140,15 +141,15 @@ const Profile = () => {
                   placeholder="Enter your email"
                 />
               ) : (
-                <p className="text-gray-900 dark:text-white text-lg">
-                  {profile.email}
+                <p className="text-gray-900 dark:text-white text-base sm:text-lg break-all">
+                  {profile.email || 'Not provided'}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                <Phone size={18} />
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <Phone size={16} className="sm:w-[18px] sm:h-[18px]" />
                 Phone Number
               </label>
               {isEditing ? (
@@ -161,15 +162,15 @@ const Profile = () => {
                   placeholder="Enter your phone"
                 />
               ) : (
-                <p className="text-gray-900 dark:text-white text-lg">
-                  {profile.phone}
+                <p className="text-gray-900 dark:text-white text-base sm:text-lg break-words">
+                  {profile.phone || 'Not provided'}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                <MapPin size={18} />
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <MapPin size={16} className="sm:w-[18px] sm:h-[18px]" />
                 Address
               </label>
               {isEditing ? (
@@ -181,14 +182,14 @@ const Profile = () => {
                   placeholder="Enter your address"
                 />
               ) : (
-                <p className="text-gray-900 dark:text-white text-lg">
-                  {profile.address}
+                <p className="text-gray-900 dark:text-white text-base sm:text-lg break-words">
+                  {profile.address || 'Not provided'}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block">
+              <label className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block">
                 Bio
               </label>
               {isEditing ? (
@@ -199,22 +200,22 @@ const Profile = () => {
                   }
                   placeholder="Tell us about yourself"
                   rows={4}
-                  className="w-full px-4 py-3 bg-white dark:bg-dark-hover border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 resize-none"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base bg-white dark:bg-dark-hover border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 resize-none"
                 />
               ) : (
-                <p className="text-gray-900 dark:text-white text-lg leading-relaxed">
-                  {profile.bio}
+                <p className="text-gray-900 dark:text-white text-base sm:text-lg leading-relaxed break-words">
+                  {profile.bio || 'Not provided'}
                 </p>
               )}
             </div>
 
             {isEditing && (
-              <div className="flex gap-4 pt-4">
-                <Button onClick={handleSave} className="flex-1">
-                  <Save size={18} className="mr-2" />
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+                <Button onClick={handleSave} className="flex-1 text-sm sm:text-base">
+                  <Save size={16} className="sm:w-[18px] sm:h-[18px] mr-2" />
                   Save Changes
                 </Button>
-                <Button variant="outline" onClick={handleCancel} className="flex-1">
+                <Button variant="outline" onClick={handleCancel} className="flex-1 text-sm sm:text-base">
                   Cancel
                 </Button>
               </div>

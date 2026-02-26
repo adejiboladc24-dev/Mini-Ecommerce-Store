@@ -122,11 +122,11 @@ const Checkout = () => {
             <ArrowLeft size={20} />
             Back to Cart
           </button>
-          <h1 className="luxury-text text-5xl font-bold text-white mb-2">Checkout</h1>
-          <p className="text-white/60 text-lg">Complete your order details</p>
+          <h1 className="luxury-text text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">Checkout</h1>
+          <p className="text-white/60 text-base sm:text-lg">Complete your order details</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Checkout Form */}
           <div className="lg:col-span-2">
             <motion.div
@@ -136,7 +136,7 @@ const Checkout = () => {
             >
               <div className="flex items-center gap-3 mb-6">
                 <User className="text-primary" size={32} />
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">
                   Customer Information
                 </h2>
               </div>
@@ -221,7 +221,7 @@ const Checkout = () => {
                 </div>
 
                 {/* City and State */}
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-white/80 mb-3">
                       City *
