@@ -75,6 +75,30 @@ h1, h2, h3, .luxury-text {
   letter-spacing: -0.02em;
 }
 
+/* Light mode text colors - CRITICAL FIX */
+:root:not(.dark) h1,
+:root:not(.dark) h2,
+:root:not(.dark) h3,
+:root:not(.dark) .luxury-text {
+  color: #1a1a2e !important;
+}
+
+:root:not(.dark) p,
+:root:not(.dark) span,
+:root:not(.dark) div {
+  color: #2d3748;
+}
+
+:root:not(.dark) .text-white {
+  color: #1a1a2e !important;
+}
+
+:root:not(.dark) .text-white\/60,
+:root:not(.dark) .text-white\/80,
+:root:not(.dark) .text-white\/90 {
+  color: #4a5568 !important;
+}
+
 /* Sophisticated Mesh Gradient Background */
 .mesh-gradient {
   background: 
@@ -389,6 +413,16 @@ html.dark {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Light mode navbar text - CRITICAL */
+:root:not(.dark) .premium-navbar * {
+  color: #1a1a2e !important;
+}
+
+:root:not(.dark) .premium-navbar svg {
+  color: #1a1a2e !important;
+  stroke: #1a1a2e !important;
+}
+
 /* Pagination Styles */
 .pagination-button {
   @apply w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-300;
@@ -616,4 +650,128 @@ a,
 [role="button"] {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+
+/* ========================================
+   LIGHT MODE TEXT VISIBILITY FIX
+   ======================================== */
+
+/* Force dark text in light mode for ALL elements */
+:root:not(.dark) {
+  color: #1a1a2e;
+}
+
+:root:not(.dark) body {
+  color: #1a1a2e;
+}
+
+/* Headings in light mode */
+:root:not(.dark) h1,
+:root:not(.dark) h2,
+:root:not(.dark) h3,
+:root:not(.dark) h4,
+:root:not(.dark) h5,
+:root:not(.dark) h6 {
+  color: #1a1a2e !important;
+}
+
+/* Paragraphs and spans in light mode */
+:root:not(.dark) p,
+:root:not(.dark) span,
+:root:not(.dark) div,
+:root:not(.dark) a,
+:root:not(.dark) label {
+  color: #2d3748 !important;
+}
+
+/* Override Tailwind text-white classes in light mode */
+:root:not(.dark) .text-white {
+  color: #1a1a2e !important;
+}
+
+:root:not(.dark) .text-white\/90 {
+  color: #2d3748 !important;
+}
+
+:root:not(.dark) .text-white\/80 {
+  color: #4a5568 !important;
+}
+
+:root:not(.dark) .text-white\/60 {
+  color: #718096 !important;
+}
+
+:root:not(.dark) .text-white\/50 {
+  color: #a0aec0 !important;
+}
+
+:root:not(.dark) .text-white\/40 {
+  color: #cbd5e0 !important;
+}
+
+/* Gradient text in light mode */
+:root:not(.dark) .gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Luxury text in light mode */
+:root:not(.dark) .luxury-text {
+  color: #1a1a2e !important;
+}
+
+/* Luxury heading in light mode */
+:root:not(.dark) .luxury-heading {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d3748 50%, #1a1a2e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Icons in light mode */
+:root:not(.dark) svg {
+  color: #2d3748 !important;
+  stroke: #2d3748 !important;
+}
+
+/* Buttons text in light mode */
+:root:not(.dark) button {
+  color: #1a1a2e;
+}
+
+/* Links in light mode */
+:root:not(.dark) a {
+  color: #2d3748;
+}
+
+:root:not(.dark) a:hover {
+  color: #667eea;
+}
+
+/* Input placeholders in light mode */
+:root:not(.dark) ::placeholder {
+  color: #a0aec0 !important;
+}
+
+/* Cards text in light mode */
+:root:not(.dark) .sophisticated-card,
+:root:not(.dark) .premium-card {
+  color: #1a1a2e;
+}
+
+:root:not(.dark) .sophisticated-card *,
+:root:not(.dark) .premium-card * {
+  color: #2d3748;
+}
+
+/* Hero section text in light mode */
+:root:not(.dark) .sophisticated-hero * {
+  color: #1a1a2e !important;
+}
+
+/* Ensure all text is visible in light mode */
+:root:not(.dark) * {
+  color: inherit;
 }
