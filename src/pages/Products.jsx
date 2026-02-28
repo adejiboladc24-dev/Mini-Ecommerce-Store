@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Grid, List, SlidersHorizontal, ChevronLeft, ChevronRight } from 'lucide-react';
 import { products, searchProducts, paginateProducts } from '../data/products';
+import { smoothScrollTo } from '../utils/smoothScroll';
 import ProductCard from '../components/ProductCard';
 import FilterSidebar from '../components/FilterSidebar';
 import Button from '../components/Button';
@@ -84,7 +85,7 @@ const Products = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    smoothScrollTo(0); // Instant scroll to top
   };
 
   const renderPagination = () => {

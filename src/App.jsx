@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import { ToastProvider } from './context/ToastContext';
+import { smoothScrollTo } from './utils/smoothScroll';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ToastNotification from './components/ToastNotification';
 import PromoBanner from './components/PromoBanner';
+import Loader from './components/Loader';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
@@ -18,18 +20,33 @@ import Profile from './pages/Profile';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 
-// Scroll to top on route change
+// Fast scroll to top on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    smoothScrollTo(0); // Instant scroll
   }, [pathname]);
 
   return null;
 }
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Show loader for 2 seconds on initial load
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <ThemeProvider>
       <ToastProvider>

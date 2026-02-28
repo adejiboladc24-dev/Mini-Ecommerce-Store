@@ -12,10 +12,22 @@ const Home = () => {
   const { scrollY } = useScroll();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [stats, setStats] = useState({ orders: 0, customers: 0, products: 0, rating: 0 });
+  const [isMobile, setIsMobile] = useState(false);
   
-  const y1 = useTransform(scrollY, [0, 300], [0, 100]);
-  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Disable parallax on mobile for better performance
+  const y1 = useTransform(scrollY, [0, 300], isMobile ? [0, 0] : [0, 100]);
+  const y2 = useTransform(scrollY, [0, 300], isMobile ? [0, 0] : [0, -100]);
+  const opacity = useTransform(scrollY, [0, 300], isMobile ? [1, 1] : [1, 0]);
 
   // Automatic slideshow
   useEffect(() => {

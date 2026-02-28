@@ -25,19 +25,31 @@
   @apply from-primary/60 to-secondary/60;
 }
 
-/* Smooth Scrolling - Enhanced */
-* {
-  scroll-behavior: smooth;
-}
-
+/* Fast Scrolling - Optimized for Performance */
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
-  scroll-padding-top: 80px; /* Account for fixed navbar */
+  scroll-padding-top: 80px;
+  /* Enable hardware acceleration for smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 body {
-  scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* Optimize rendering performance */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Enable GPU acceleration */
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* Optimize all animated elements */
+* {
+  /* Reduce paint operations */
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Base Styles - Premium Typography */
@@ -144,6 +156,11 @@ h1, h2, h3, .luxury-text {
 /* Glass Effect */
 .glass {
   @apply bg-white/10 backdrop-blur-lg border border-white/20;
+}
+
+/* Light mode glass - More solid */
+:root:not(.dark) .glass {
+  @apply bg-white/90 backdrop-blur-lg border border-gray-300;
 }
 
 /* Card Hover Effect */
@@ -335,20 +352,23 @@ html.dark {
   transition: background 0.3s ease, border 0.3s ease;
 }
 
-/* Light mode sophisticated card */
+/* Light mode sophisticated card - More solid and visible */
 :root:not(.dark) .sophisticated-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 8px 32px 0 rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
-/* Floating Objects */
+/* Floating Objects - GPU Accelerated */
 .floating-object {
   @apply absolute pointer-events-none;
   filter: blur(1px);
-  opacity: 0.6;
+  /* Enable GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Premium Navbar */
@@ -362,11 +382,11 @@ html.dark {
   transition: background 0.3s ease, border 0.3s ease;
 }
 
-/* Light mode navbar */
+/* Light mode navbar - More solid */
 :root:not(.dark) .premium-navbar {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* Pagination Styles */
@@ -454,6 +474,22 @@ html.dark {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Light mode sophisticated input - More visible */
+:root:not(.dark) .sophisticated-input {
+  @apply bg-white border-2 border-gray-300;
+  @apply text-gray-900 placeholder-gray-500;
+  @apply focus:bg-white focus:border-primary focus:outline-none;
+}
+
+:root:not(.dark) .sophisticated-input:focus {
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.15);
+}
+
+:root:not(.dark) .sophisticated-input:hover {
+  background-color: rgba(255, 255, 255, 1);
+  border-color: rgba(108, 99, 255, 0.5);
+}
+
 /* Prevent FOUC */
 html.dark {
   color-scheme: dark;
@@ -533,4 +569,51 @@ html.dark {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Mobile Scroll Performance Optimization */
+.optimize-scroll {
+  /* Enable hardware acceleration */
+  -webkit-overflow-scrolling: touch;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Optimize all images for smooth scrolling */
+img {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimize cards and animated elements */
+.sophisticated-card,
+.premium-card,
+[class*="motion-"] {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for better performance on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize touch interactions */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
