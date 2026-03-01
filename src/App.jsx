@@ -35,10 +35,10 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Show loader for 2 seconds on initial load
+    // Show loader for 4 seconds on initial load
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 4000); // 4 seconds for full experience
 
     return () => clearTimeout(timer);
   }, []);
