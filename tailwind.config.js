@@ -19,6 +19,9 @@ export default {
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
         'float': 'float 3s ease-in-out infinite',
+        'spin-slow': 'spin 3s linear infinite',
+        'fade-in': 'fadeIn 1s ease-in forwards',
+        'fade-in-up': 'fadeInUp 1s ease-out forwards',
       },
       keyframes: {
         glow: {
@@ -28,6 +31,14 @@ export default {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         }
       }
     },

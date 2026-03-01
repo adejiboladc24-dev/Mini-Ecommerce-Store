@@ -35,10 +35,10 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Show loader for 3 seconds on initial load
+    // Show loader for 3 seconds
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // 3 seconds
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -48,31 +48,28 @@ function App() {
       <ToastProvider>
         <CartProvider>
           <WishlistProvider>
-            {loading ? (
-              <Loader />
-            ) : (
-              <Router>
-                <ScrollToTop />
-                <div className="min-h-screen bg-white dark:bg-dark-bg transition-colors duration-300">
-                  <PromoBanner />
-                  <Navbar />
-                  <AnimatePresence mode="wait">
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/products" element={<Products />} />
-                      <Route path="/product/:id" element={<ProductDetails />} />
-                      <Route path="/cart" element={<Cart />} />
-                      <Route path="/checkout" element={<Checkout />} />
-                      <Route path="/orders" element={<Orders />} />
-                      <Route path="/wishlist" element={<Wishlist />} />
-                      <Route path="/profile" element={<Profile />} />
-                    </Routes>
-                  </AnimatePresence>
-                  <Footer />
-                  <ToastNotification />
-                </div>
-              </Router>
-            )}
+            {loading && <Loader />}
+            <Router>
+              <ScrollToTop />
+              <div className="min-h-screen bg-white dark:bg-dark-bg transition-colors duration-300">
+                <PromoBanner />
+                <Navbar />
+                <AnimatePresence mode="wait">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/product/:id" element={<ProductDetails />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/orders" element={<Orders />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
+                    <Route path="/profile" element={<Profile />} />
+                  </Routes>
+                </AnimatePresence>
+                <Footer />
+                <ToastNotification />
+              </div>
+            </Router>
           </WishlistProvider>
         </CartProvider>
       </ToastProvider>
